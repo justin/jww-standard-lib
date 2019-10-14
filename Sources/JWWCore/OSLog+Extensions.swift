@@ -1,10 +1,3 @@
-//
-//  OSLog+Extensions.swift
-//  
-//
-//  Created by Justin Williams on 7/31/19.
-//
-
 import Foundation
 import os.log
 

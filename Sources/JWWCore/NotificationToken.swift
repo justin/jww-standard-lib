@@ -1,10 +1,3 @@
-//
-//  NotificationToken.swift
-//  
-//
-//  Created by Justin Williams on 7/31/19.
-//
-
 import Foundation
 
 /// A notification token is a wrapper around a `Notification` listener that automatically handles the removal of the
