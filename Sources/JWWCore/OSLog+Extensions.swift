@@ -16,17 +16,13 @@ public struct LoggingProvider {
     /// Typealias to String for defining the subsystem.
     public typealias Subsystem = String
 
-    /// The available categories provided by the logging provider.
-    public enum Category: String {
-        case none = "default"
-        case background
-        case database
-        case networking
-        case testing
-        case ui
-
-        /// Convenience accessor for the `.none` category.
-        public static var `default` = Category.none
+    /// Value type that declares a category that can be used for logging to the Console.
+    public struct Category: Hashable, Equatable, RawRepresentable {
+        public typealias RawValue = String
+        public let rawValue: RawValue
+        public init(rawValue: RawValue) {
+            self.rawValue = rawValue
+        }
     }
 
     /// Generate a new `OSLog` instance for a given subsystem and category.
@@ -47,4 +43,31 @@ public struct LoggingProvider {
 public extension LoggingProvider.Subsystem {
     /// The default subsystem provider, which is mapped to the parent application's bundle identifier.
     static var `default` = Bundle.main.bundleIdentifier ?? ""
+}
+
+// MARK: Default Categories
+// ====================================
+// Default Categories
+// ====================================
+public extension LoggingProvider.Category {
+    /// Convenience accessor for the `.none` category.
+    static let `default`: LoggingProvider.Category = .none
+
+    /// A category for any background usage logging
+    static let background = LoggingProvider.Category(rawValue: "background")
+
+    /// A category for any data persistence logging
+    static let database = LoggingProvider.Category(rawValue: "database")
+
+    /// A category for any network / API logging
+    static let networking = LoggingProvider.Category(rawValue: "networking")
+
+    /// An empty string category.
+    static let none = LoggingProvider.Category(rawValue: "")
+
+    /// A category for any test-related logging
+    static let testing = LoggingProvider.Category(rawValue: "testing")
+
+    /// A category for any UI-related logging
+    static let ui = LoggingProvider.Category(rawValue: "ui")
 }
