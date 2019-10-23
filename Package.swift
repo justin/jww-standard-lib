@@ -17,5 +17,6 @@ let package = Package(
     dependencies: [ ],
     targets: [
         .target(name: "JWWCore", dependencies: []),
+        .testTarget(name: "JWWCore-Tests", dependencies: ["JWWCore"]),
     ]
 )
