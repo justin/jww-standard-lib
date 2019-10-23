@@ -7,6 +7,7 @@ let package = Package(
     name: "JWWCore",
     platforms: [
         .iOS(.v12),
+        .macOS(.v10_14),
         .tvOS(.v12),
         .watchOS(.v5),
     ],
