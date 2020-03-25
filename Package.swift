@@ -12,7 +12,7 @@ let package = Package(
         .watchOS(.v5),
     ],
     products: [
-        .library(name: "JWWCore", targets: ["JWWCore"]),
+        .library(name: "JWWCore", type: .dynamic, targets: ["JWWCore"]),
     ],
     dependencies: [ ],
     targets: [
