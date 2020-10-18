@@ -1,18 +1,18 @@
-// swift-tools-version:5.1
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version:5.3
 
 import PackageDescription
 
 let package = Package(
     name: "JWWCore",
     platforms: [
-        .iOS(.v12),
-        .macOS(.v10_14),
-        .tvOS(.v12),
-        .watchOS(.v5),
+        .iOS(.v13),
+        .macOS(.v10_15),
+        .tvOS(.v13),
+        .watchOS(.v6),
     ],
     products: [
-        .library(name: "JWWCore", type: .dynamic, targets: ["JWWCore"]),
+        .library(name: "JWWCore", targets: ["JWWCore"]),
+        .library(name: "JWWCoreDynamic", type: .dynamic, targets: ["JWWCore"]),
     ],
     dependencies: [ ],
     targets: [
