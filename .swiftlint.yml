@@ -1,0 +1,37 @@
+disabled_rules:
+  - mark
+
+opt_in_rules:
+  - attributes
+  - empty_count
+  - file_header
+  - fatal_error_message
+  - private_outlet
+
+excluded:
+  - bin
+  - Carthage
+  - fastlane
+  - lib
+  - script
+  - .bundle
+
+# Be mindful of force cast force try. Add lint ignoring commentary if these are valid.
+force_cast:
+  severity: warning
+force_try:
+  severity: warning
+
+# Personal preference.
+line_length:
+  warning: 150
+  error: 500
+  ignores_comments: true
+  ignores_urls: true
+
+# Prefer file lengths of less than 500. Its a code smell otherwise.
+file_length:
+  warning: 500
+  error: 1200
+
+reporter: "xcode"
