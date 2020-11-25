@@ -18,6 +18,7 @@ public struct LoggingProvider {
 
     /// Value type that declares a category that can be used for logging to the Console.
     public struct Category: Hashable, Equatable, RawRepresentable {
+        // swiftlint:disable:next nesting
         public typealias RawValue = String
         public let rawValue: RawValue
         public init(rawValue: RawValue) {
@@ -68,6 +69,8 @@ public extension LoggingProvider.Category {
     /// A category for any test-related logging
     static let testing = LoggingProvider.Category(rawValue: "testing")
 
+    // swiftlint:disable identifier_name
     /// A category for any UI-related logging
     static let ui = LoggingProvider.Category(rawValue: "ui")
+    // swiftlint:enable identifier_name
 }
