@@ -8,6 +8,7 @@ on:
 
 jobs:
   macos:
+    name: "Unit Tests"
     runs-on: macos-11.0 # Big Sur
     steps:
       - name: Checkout
