@@ -2,21 +2,21 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   macos:
     name: "Unit Tests"
-    runs-on: macos-11.0 # Big Sur
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Ensure Xcode Version
         run: | 
-          sudo xcode-select -s "/Applications/Xcode_12.2.app"
+          sudo xcode-select -s "/Applications/Xcode_12.3.app"
 
       - name: Build and Test
         run: swift test
