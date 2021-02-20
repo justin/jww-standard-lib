@@ -1,5 +1,16 @@
 import Foundation
-import os.log
+import os
+
+@available(OSX 11.0, iOS 14.0, tvOS 14.0, watchOS 7.0, *)
+public extension Logger {
+    /// Initialize a new `Logger` instance.
+    ///
+    /// - Parameter subsystem: The preferred logging subsystem.
+    /// - Parameter category: The preferred logging category.
+    init(subsystem: LoggingProvider.Subsystem = .default, category: LoggingProvider.Category = .default) {
+        self.init(subsystem: subsystem, category: category.rawValue)
+    }
+}
 
 public extension OSLog {
     /// Initialize a new `OSLog` instance using the parent application bundle identifier and a custom category.
