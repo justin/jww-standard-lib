@@ -2,11 +2,10 @@ import Foundation
 
 /// Function that throws out the passed in value and returns `Void`.
 ///
-/// - Parameter transform: The parameter that will be thrown away.
 /// - Returns: The `Void` value: aka an empty tuple.
 @inlinable
-func void<T>(_ transform: T) -> Void {
-    return ()
+func void<T>() -> (T) -> Void {
+    return const(())
 }
 
 /// Function that returns a function which returns a constant value.
@@ -15,14 +14,14 @@ func void<T>(_ transform: T) -> Void {
 /// - Returns: Closure that returns the passed value.
 ///
 @inlinable
-public func const<T>(_ value: T) -> () -> T {
-    return { value }
+public func const<T, U>(_ value: T) -> (U) -> T {
+    return { _ in value }
 }
 
-/// Function that returns the passed in parameter as a tuple.
+/// Function that returns the passed in parameter
 ///
-/// - Parameter transform: The parameter that will be returned in a tuple.
+/// - Parameter t: The parameter that will be returned.
 @inlinable
-public func id<T>(_ transform: T) -> (T) {
-    return (transform)
+public func id<T>(_ t: T) -> T {
+    return t
 }
