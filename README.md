@@ -10,4 +10,4 @@ A set of protocols and types I use in all of my projects.
 
 ## License
 
-Copyright 2020 Justin Williams. Licensed under the MIT license.
+Copyright 2021 Justin Williams. Licensed under the MIT license.
