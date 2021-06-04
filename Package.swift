@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.4
 
 import PackageDescription
 
@@ -11,8 +11,7 @@ let package = Package(
         .watchOS(.v6)
     ],
     products: [
-        .library(name: "JWWCore", type: .static, targets: ["JWWCore"]),
-        .library(name: "JWWCoreDynamic", type: .dynamic, targets: ["JWWCore"])
+        .library(name: "JWWCore", targets: ["JWWCore"]),
     ],
     dependencies: [ ],
     targets: [
