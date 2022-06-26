@@ -19,10 +19,10 @@ jobs:
 
   test:
     name: "Unit Tests"
-    runs-on: macOS-11
+    runs-on: macos-12
     env:
       XCODE_SCHEME: "JWWCore"
-      DEVELOPER_DIR: "/Applications/Xcode_13.1.app/Contents/Developer"
+      # DEVELOPER_DIR: "/Applications/Xcode_13.4.1.app/Contents/Developer"
 
     steps:
       - name: Checkout
@@ -38,7 +38,7 @@ jobs:
           set -o pipefail && env NSUnbufferedIO=YES
           xcodebuild build-for-testing -usePackageSupportBuiltinSCM -scheme "$XCODE_SCHEME" -destination "platform=iOS Simulator,OS=latest,name=iPhone 12" | xcpretty
 
-      - name: Build and Test (tvOS)
+      - name: Build and Test (Mac Catalyst)
         run: |
           set -o pipefail && env NSUnbufferedIO=YES
-          xcodebuild build-for-testing -usePackageSupportBuiltinSCM -scheme "$XCODE_SCHEME" -destination "platform=tvOS Simulator,OS=latest,name=Apple TV 4K" | xcpretty
+          xcodebuild build-for-testing -usePackageSupportBuiltinSCM -scheme "$XCODE_SCHEME" -destination "platform=macOS,variant=Mac Catalyst" | xcpretty
