@@ -22,6 +22,6 @@ public func const<T, U>(_ value: T) -> (U) -> T {
 ///
 /// - Parameter t: The parameter that will be returned.
 @inlinable
-public func id<T>(_ t: T) -> T {
-    return t
+public func id<T>(_ type: T) -> T {
+    return type
 }
