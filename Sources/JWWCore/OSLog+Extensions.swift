@@ -28,7 +28,7 @@ public struct LoggingProvider {
     public typealias Subsystem = String
 
     /// Value type that declares a category that can be used for logging to the Console.
-    public struct Category: Hashable, Equatable, RawRepresentable {
+    public struct Category: Hashable, Sendable, RawRepresentable {
         // swiftlint:disable:next nesting
         public typealias RawValue = String
         public let rawValue: RawValue
@@ -54,7 +54,7 @@ public struct LoggingProvider {
 // ====================================
 public extension LoggingProvider.Subsystem {
     /// The default subsystem provider, which is mapped to the parent application's bundle identifier.
-    static var `default` = Bundle.main.bundleIdentifier ?? ""
+    static let `default` = Bundle.main.bundleIdentifier ?? ""
 }
 
 // MARK: Default Categories
