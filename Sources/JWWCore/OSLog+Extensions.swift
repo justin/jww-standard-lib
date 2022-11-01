@@ -65,6 +65,9 @@ public extension LoggingProvider.Category {
     /// Convenience accessor for the `.none` category.
     static let `default`: LoggingProvider.Category = .none
 
+    /// A category for any app wide logging.
+    static let app = LoggingProvider.Category(rawValue: "app")
+
     /// A category for any background usage logging
     static let background = LoggingProvider.Category(rawValue: "background")
 
