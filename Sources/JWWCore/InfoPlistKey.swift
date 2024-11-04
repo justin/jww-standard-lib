@@ -9,8 +9,8 @@ import Foundation
  - SeeAlso: `InfoPlistKey.configuration`
  */
 @frozen
-public struct InfoPlistKey: Hashable, Equatable, RawRepresentable {
-    public var rawValue: String
+public struct InfoPlistKey: Hashable, Sendable, RawRepresentable {
+    public let rawValue: RawValue
     public typealias RawValue = String
 
     public init(rawValue: String) {
@@ -68,4 +68,8 @@ public struct InfoPlistValue<T> {
     public var wrappedValue: T {
         bundle.object(forInfoDictionaryKey: key.rawValue) as? T ?? defaultValue
     }
+}
+
+extension InfoPlistValue: Sendable where T: Sendable {
+
 }
