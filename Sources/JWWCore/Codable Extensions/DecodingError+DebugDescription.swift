@@ -1,6 +1,6 @@
 import Foundation
 
-extension DecodingError: CustomDebugStringConvertible {
+extension DecodingError: @retroactive CustomDebugStringConvertible {
     public var debugDescription: String {
         switch self {
         case .typeMismatch(_, let context):

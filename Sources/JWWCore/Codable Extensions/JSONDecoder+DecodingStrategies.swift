@@ -17,7 +17,7 @@ public extension JSONDecoder.DateDecodingStrategy {
     static let iso8601milliseconds = custom {
         let container = try $0.singleValueContainer()
         let string = try container.decode(String.self)
-        if let date = DateFormatter.iso8601.date(from: string) {
+        if let date = DateFormatters.iso8601.date(from: string) {
             return date
         }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "Could not parse date string in current format: \(string)")
