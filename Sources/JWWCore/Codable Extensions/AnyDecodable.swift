@@ -1,7 +1,8 @@
 import Foundation
 
 ///  A type-erased `Decodable` value.
-@frozen public struct AnyDecodable: Decodable, Equatable {
+@frozen
+public struct AnyDecodable: Decodable, Equatable {
     /// The value wrapped by this instance.
     public let base: Any
 

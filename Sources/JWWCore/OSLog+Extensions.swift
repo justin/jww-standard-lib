@@ -83,8 +83,6 @@ public extension LoggingProvider.Category {
     /// A category for any test-related logging
     static let testing = LoggingProvider.Category(rawValue: "testing")
 
-    // swiftlint:disable identifier_name
     /// A category for any UI-related logging
     static let ui = LoggingProvider.Category(rawValue: "ui")
-    // swiftlint:enable identifier_name
 }
