@@ -1,7 +1,7 @@
 import Foundation
 
 /// Empty protocol that can be used to define a context object that can be attached to any `Decoder`
-public protocol DecodingContext { }
+public protocol DecodingContext: Sendable { }
 
 extension CodingUserInfoKey {
     /// Custom coding key that can be used to declare a `DecodingContext`.
