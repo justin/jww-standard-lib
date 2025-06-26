@@ -1,5 +1,6 @@
 import Foundation
 
+#if swift(<6.0)
 public actor DateFormatters {
     /// ISO8601 date formatter with support for internet date times and fractional seconds.
     public static let iso8601: ISO8601DateFormatter = {
@@ -8,3 +9,4 @@ public actor DateFormatters {
         return formatter
     }()
 }
+#endif

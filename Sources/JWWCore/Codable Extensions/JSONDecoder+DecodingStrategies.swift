@@ -13,13 +13,22 @@ public extension JSONDecoder {
 }
 
 public extension JSONDecoder.DateDecodingStrategy {
-    /// Custom date decoding strategy that will attempt to decode a date formatted with ISO8601+millisecond precision.
-    static let iso8601milliseconds = custom {
+    @available(*, renamed: "iso8601WithFractionalSeconds")
+    /// Custom date decoding strategy that will attempt to decode a date formatted with ISO8601 fractional second precision.
+    static let iso8601milliseconds = iso8601WithFractionalSeconds
+
+    /// Custom date decoding strategy that will attempt to decode a date formatted with ISO8601 fractional second precision.
+    static let iso8601WithFractionalSeconds = custom {
+#if swift(>=6.0)
+        try .init(iso8601withFractionalSeconds: $0.singleValueContainer().decode(String.self))
+#else
         let container = try $0.singleValueContainer()
         let string = try container.decode(String.self)
         if let date = DateFormatters.iso8601.date(from: string) {
             return date
         }
+
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "Could not parse date string in current format: \(string)")
+#endif
     }
 }
