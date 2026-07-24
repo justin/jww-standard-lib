@@ -75,9 +75,11 @@ final class DecodingErrorDebugExtensionTests {
         #expect {
             try JSONDecoder().decode(CodableFixture.self, from: data)
         } throws: { error in
-            let isDecodingError = error is DecodingError
-            let descriptionMatches = String(reflecting: error) == expectedMessage
-            return isDecodingError && descriptionMatches
+            guard let decodingError = error as? DecodingError else {
+                return false
+            }
+
+            return decodingError.debugDescription == expectedMessage
         }
     }
 }
