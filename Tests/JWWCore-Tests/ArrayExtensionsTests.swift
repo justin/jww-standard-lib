@@ -1,8 +1,10 @@
-import XCTest
+import Testing
+@testable import JWWCore
 
-final class ArrayExtensionsTests: XCTestCase {
+struct ArrayExtensionsTests {
     /// Validate we can remove duplicates from a hashable array.
-    func testRemovingDuplicates() async throws {
+    @Test
+    func testRemovingDuplicates() {
         let array = [
             1,
             2,
@@ -19,7 +21,7 @@ final class ArrayExtensionsTests: XCTestCase {
 
         let result = array.removingDuplicates()
 
-        XCTAssertEqual(result.count, 6)
-        XCTAssertNotEqual(result, array)
+        #expect(result.count == 6)
+        #expect(result != array)
     }
 }

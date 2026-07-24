@@ -1,37 +1,41 @@
-import XCTest
+import Foundation
+import Testing
 @testable import JWWCore
 
 /// Tests to validate the helper functions.
-final class HelperFunctionTests: XCTestCase {
+struct HelperFunctionTests {
     private struct Item: Identifiable {
         let id = UUID()
     }
 
     /// Tests to validate the `const` function.
-    func testConstMapping() throws {
+    @Test
+    func testConstMapping() {
         let inital = Array(repeating: 10, count: 100)
         let expected = Array(repeating: true, count: 100)
         let result = inital.map(const(true))
-        XCTAssertTrue(result == expected)
+        #expect(result == expected)
     }
 
     /// Validate we can map to void using our void function.
-    func testVoidMapping() throws {
+    @Test
+    func testVoidMapping() {
         let array: [String] = [ "Foo", "Bar", "Biz" ]
 
         let result: [Void] = array.map(void())
 
         for item in result {
-            XCTAssertTrue(item == ())
+            #expect(item == ())
         }
     }
 
     /// Tests to validate the `id` function.
+    @Test
     func testIDMapping() {
-        XCTAssertTrue(id(()) == ())
+        #expect(id(()) == ())
 
         let inital = Array(repeating: 10, count: 100)
         let result = inital.map(id)
-        XCTAssertTrue(inital == result)
+        #expect(inital == result)
     }
 }

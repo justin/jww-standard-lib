@@ -1,10 +1,9 @@
-import XCTest
+import Foundation
+import Testing
 import JWWCore
 
 /// Tests to validate our `AnyDecodable` type.
-final class AnyDecodableTests: XCTestCase {
-    private let decoder = JSONDecoder()
-
+struct AnyDecodableTests {
     private let fixture = """
     {
         "string": "John Appleseed",
@@ -21,42 +20,52 @@ final class AnyDecodableTests: XCTestCase {
     }
     """
 
-    private var sut: [String: AnyDecodable]!
-
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-
-        let data = try XCTUnwrap(fixture.data(using: .utf8))
-        sut = try decoder.decode([String: AnyDecodable].self, from: data)
-    }
-
     /// Validate we can decode a `Bool` value.
+    @Test
     func testDecodingBoolean() throws {
-        XCTAssertEqual(sut["boolean"], AnyDecodable(true))
+        let sut = try decodedFixture()
+
+        #expect(sut["boolean"] == AnyDecodable(true))
     }
 
     /// Validate we can decode numeric values.
+    @Test
     func testDecodingNumericValues() throws {
-        XCTAssertEqual(sut["integer"], AnyDecodable(100))
-        XCTAssertEqual(sut["double"], AnyDecodable(3.141592653589793))
+        let sut = try decodedFixture()
+
+        #expect(sut["integer"] == AnyDecodable(100))
+        #expect(sut["double"] == AnyDecodable(3.141592653589793))
     }
 
     /// Validate we can decode `String` values.
+    @Test
     func testDecodingString() throws {
-        XCTAssertEqual(sut["string"], AnyDecodable("John Appleseed"))
+        let sut = try decodedFixture()
+
+        #expect(sut["string"] == AnyDecodable("John Appleseed"))
     }
 
     /// Validate we can decode null values.
+    @Test
     func testDecodingNull() throws {
-        XCTAssertEqual(sut["null"], AnyDecodable(NSNull()))
+        let sut = try decodedFixture()
+
+        #expect(sut["null"] == AnyDecodable(NSNull()))
     }
 
     /// Validate we can decode an array of `AnyDecodable` values.
+    @Test
     func testDecodingArray() throws {
         let expectedArray: [String] = ["Steve", "Tim", "Phil"]
+        let sut = try decodedFixture()
 
-        let result = try XCTUnwrap(sut["array"]?.base as? [String])
+        let result = try #require(sut["array"]?.base as? [String])
 
-        XCTAssertEqual(result, expectedArray)
+        #expect(result == expectedArray)
+    }
+
+    private func decodedFixture() throws -> [String: AnyDecodable] {
+        let data = try #require(fixture.data(using: .utf8))
+        return try JSONDecoder().decode([String: AnyDecodable].self, from: data)
     }
 }

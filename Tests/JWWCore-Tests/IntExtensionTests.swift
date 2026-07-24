@@ -1,54 +1,59 @@
-import XCTest
+import Testing
 import JWWCore
 
 /// Tests to validate the various extensions to `Int`.
-final class IntExtensionsTests: XCTestCase {
+struct IntExtensionsTests {
     /// Validate we can show a number as bytes.
-    func testIntAsBytes() throws {
+    @Test
+    func testIntAsBytes() {
         let number = Int(128)
 
         let result = number.bytes
 
-        XCTAssertEqual(result, number)
+        #expect(result == number)
     }
 
     /// Validate we can show a number as kilobytes.
-    func testIntAsKilobytes() throws {
+    @Test
+    func testIntAsKilobytes() {
         let expectedValue = 128_000
         let number = Int(128)
 
         let result = number.kilobytes
 
-        XCTAssertEqual(result, expectedValue)
+        #expect(result == expectedValue)
     }
 
     /// Validate we can show a number as megabytes.
-    func testIntAsMegabytes() throws {
+    @Test
+    func testIntAsMegabytes() {
         let expectedValue = 128_000_000
         let number = Int(128)
 
         let result = number.megabytes
 
-        XCTAssertEqual(result, expectedValue)
+        #expect(result == expectedValue)
     }
 
     /// Validate we can show a number as gigabytes.
-    func testIntAsGigabytes() throws {
+    @Test
+    func testIntAsGigabytes() {
         let expectedValue = 128_000_000_000
         let number = Int(128)
 
         let result = number.gigabytes
 
-        XCTAssertEqual(result, expectedValue)
+        #expect(result == expectedValue)
     }
 
     /// Validate we can show a number as terabytes.
-    func testIntAsTerabytes() throws {
+    @Test
+    func testIntAsTerabytes() {
         let expectedValue = 128_000_000_000_000
         let number = Int(128)
 
         let result = number.terabytes
 
-        XCTAssertEqual(result, expectedValue)
+        #expect(result == expectedValue)
     }
 }
